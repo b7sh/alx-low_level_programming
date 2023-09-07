@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <unistd.h>
 /**
  * main - Entry point
  *
@@ -10,7 +10,6 @@
 
 int main(void)
 {
-chrr quo[1] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n"
-writ(1, quo, 59)
+writ(2, "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n, 59);
 return (1);
 }
