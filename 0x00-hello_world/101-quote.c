@@ -10,7 +10,7 @@
 
 int main(void)
 {
-char quo[] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n"
+chrr quo[1] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n"
 writ(1, quo, 59)
-return (0);
+return (1);
 }
