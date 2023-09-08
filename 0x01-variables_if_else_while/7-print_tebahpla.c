@@ -13,8 +13,8 @@ int main(void)
 char cr = 'z';
 while (cr >= 'a')
 {
-putchar(cr\n);
+putchar(cr);
 cr--;
-
+putchar('\n');
 return (0);
 }
