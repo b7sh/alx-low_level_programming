@@ -31,7 +31,7 @@ putchar(',');
 putchar(' ');
 }
 }
-digit3++
+digit3++;
 }
 digit2++;
 }
