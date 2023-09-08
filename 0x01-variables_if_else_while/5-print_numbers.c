@@ -10,12 +10,12 @@
 
 int main(void)
 {
-int num = 0;
-while (num <= 9)
+int digit = 0;
+while (digit <= 9)
 {
-printf("%d", num);
-num++;
+printf("%d", digit);
+digit++;
 }
-printf('\n');
+printf("\n");
 return (0);
 }
