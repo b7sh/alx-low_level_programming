@@ -11,7 +11,7 @@
 int main(void)
 {
 int digit1 = 0;
-int digit1, digit3;
+int digit2, digit3;
 while (digit1 <= 9)
 {
 digit2 = 0;
