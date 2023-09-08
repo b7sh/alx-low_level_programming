@@ -11,8 +11,8 @@
 int main(void)
 {
 
-char chr1 = 'a'
-char chr2 = 'A'
+char chr1 = 'a';
+char chr2 = 'A';
 while (chr1 <= 'z')
 {
 putchar(chr1);
