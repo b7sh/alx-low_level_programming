@@ -15,6 +15,7 @@ while (cr >= 'a')
 {
 putchar(cr);
 cr--;
+}
 putchar('\n');
 return (0);
 }
