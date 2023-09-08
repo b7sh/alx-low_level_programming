@@ -15,8 +15,10 @@ while (number <= 102)
 {
 putchar(number);
 if (number == 57)
+{
 digit += 39;
 digit++;
+}
 }
 putchar('\n');
 
