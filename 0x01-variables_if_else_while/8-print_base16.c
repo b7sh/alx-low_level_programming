@@ -10,15 +10,11 @@
 
 int main(void)
 {
-int number = 48;
-while (number <= 102)
+int n;
+
+for (n = 0; n <= 15; n++)
 {
-putchar(number);
-if (number == 57)
-{
-digit += 39;
-digit++;
-}
+putchar(n);
 }
 putchar('\n');
 
