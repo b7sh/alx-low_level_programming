@@ -10,11 +10,16 @@
 
 int main(void)
 {
-int num;
+int num = 48;
 
-for (num = 0; num <= 15; num++)
+while (num <= 102)
 {
 putchar(num);
+}
+if (num == 57)
+{
+num += 39;
+num++;
 }
 putchar('\n');
 
