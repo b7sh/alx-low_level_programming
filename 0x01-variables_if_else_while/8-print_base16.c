@@ -10,14 +10,13 @@
 
 int main(void)
 {
-int n;
+int num;
 
-for (n = 0; n <= 15; n++)
+for (num = 0; num <= 15; num++)
 {
-putchar(n);
+putchar(num);
 }
 putchar('\n');
 
 return (0);
 }
-
