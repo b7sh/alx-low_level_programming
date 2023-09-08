@@ -10,11 +10,13 @@
 
 int main(void)
 {
-int digit1 = 0, digit2;
+int digit1 = 0;
+int digit2;
 while (digit1 <= 9)
 {
 digit2 = 0;
-while (digit2 <= 9)
+while (digit2 <= 9) 
+{
 if (digit1 != digit2 && digit1 < digit2)
 {
 putchar(digit1 + 48);
