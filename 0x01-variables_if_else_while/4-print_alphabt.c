@@ -11,7 +11,7 @@
 
 int main(void)
 {
-char chr = 'a'
+char chr = 'a';
 while (chr <= 'z')
 {
 if (chr == 'q' || chr == 'e')
@@ -19,6 +19,6 @@ chr++;
 putchar(chr);
 chr++;
 }
-putchar('\n')
+putchar('\n');
 return (0);
 }
