@@ -7,22 +7,22 @@
 
 int main(void)
 {
-long int a;
-long int b;
-long int c;
-long int d;
-long int e;
-long int f;
-long int g;
+unsigned long int a;
+unsigned long int b;
+unsigned long int c;
+unsigned long int d;
+unsigned long int e;
+unsigned long int f;
+unsigned long int g;
 
 b = 1;
 c = 2;
 
-printf("%ld", b);
+printf("%lu", b);
 
 for (a = 1; a < 91; a++)
 {
-printf(", %ld", c);
+printf(", %lu", c);
 c = c + b;
 b = c - b;
 }
@@ -32,8 +32,8 @@ f = c / 1000000000;
 g = c % 1000000000;
 for (a = 92; a < 99; a++)
 {
-printf(", %ld\n", f + (g / 1000000000));
-printf("%ld\n", g % 1000000000);
+printf(", %lu", f + (g / 1000000000));
+printf("%lu", g % 1000000000);
 f = f + d;
 d = f - d;
 g = g + e;
