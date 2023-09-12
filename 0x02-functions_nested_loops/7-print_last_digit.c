@@ -2,21 +2,23 @@
 
 /**
  * print_last_digit - prints the last digit of a number
- *@n: the int
- * Return: always a
+ *@boshy: the int
+ * Return: always boshy
 */
 
-int print_last_digit(int n)
+int print_last_digit(int boshy)
 {
-if (n < 0)
-n = -n;
+int a;
 
-a = n % 10;
+	if (boshy < 0)
+		boshy = -boshy;
 
-if (a < 0)
-a = -a;
+	a = boshy % 10;
 
-_putchar(a + 48);
+	if (a < 0)
+		a = -a;
 
-return (a);
+	_putchar(a + '0');
+
+	return (a);
 }
