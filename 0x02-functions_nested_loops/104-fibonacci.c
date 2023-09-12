@@ -7,38 +7,38 @@
 
 int main(void)
 {
-	long int a;
-	long int b;
-	long int c;
-	long int d;
-	long int e;
-	long int f;
-	long int g;
+long int a;
+long int b;
+long int c;
+long int d;
+long int e;
+long int f;
+long int g;
 
-	a = 1;
-	c = 2;
+a = 1;
+c = 2;
 
-	printf("%ld", b);
+printf("%ld", b);
 
-	for (a = 1; a < 91; a++)
-	{
-		printf(", %ld", c);
-		c = c + b;
-		b = c - b;
-	}
-	d = b / 1000000000;
-	d = b % 1000000000;
-	f = c / 1000000000;
-	g = c % 1000000000;
-	for (a = 92; a < 99; a++)
-	{
-		printf(", %ld", f + (g / 1000000000));
-		printf("%ld", g % 1000000000);
-		f = f + d;
-		d = f - d;
-		g = g + e;
-		e = g - e;
-	}
-	printf("\n");
-	return (0);
+for (a = 1; a < 91; a++)
+{
+printf(", %ld", c);
+c = c + b;
+b = c - b;
+}
+d = b / 1000000000;
+e = b % 1000000000;
+f = c / 1000000000;
+g = c % 1000000000;
+for (a = 92; a < 99; a++)
+{
+printf(", %ld", f + (g / 1000000000));
+printf("%ld", g % 1000000000);
+f = f + d;
+d = f - d;
+g = g + e;
+e = g - e;
+}
+printf("\n");
+return (0);
 }
