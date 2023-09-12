@@ -23,8 +23,8 @@ else
 {
 printf("%li", b);
 }
-c = a + b;
-sum = sum + c;
+sum = a + b;
+c = sum + c;
 }
 return (0);
 }
