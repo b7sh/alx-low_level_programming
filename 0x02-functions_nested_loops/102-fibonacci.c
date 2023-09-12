@@ -17,7 +17,7 @@ if (b != 20365011074)
 {
 printf("%li", b);
 printf(',');
-printf(' ')
+printf(' ');
 }
 else
 {
