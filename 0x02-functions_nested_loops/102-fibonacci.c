@@ -14,7 +14,7 @@ long int c = 2;
 long int sum;
 for (a = 1; a <= 50; a++)
 {
-if (b != 203650110)
+if (b != 20365011074)
 {
 printf("%li\n", b);
 }
