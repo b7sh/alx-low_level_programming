@@ -10,7 +10,7 @@
  * Return: Always 0 (success)
 */
 
-int _putchar(char c);
+int _putchar(char c)
 {
 	char c[] = "_putchar"
 		int ch;
