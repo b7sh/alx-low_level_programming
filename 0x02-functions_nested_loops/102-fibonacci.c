@@ -21,10 +21,11 @@ putchar(' ');
 }
 else
 {
-printf("%li", b);
+printf("%li\n", b);
 }
 sum = a + b;
-c = sum + c;
+c = b;
+c = sum;
 }
 return (0);
 }
