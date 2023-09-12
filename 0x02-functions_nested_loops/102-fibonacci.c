@@ -8,21 +8,21 @@
 
 int main(void)
 {
-unsigned long int a;
-unsigned long int b = 1;
-unsigned long int c = 2;
-unsigned long int sum;
+long int a;
+long int b = 1;
+long int c = 2;
+long int sum;
 for (a = 1; a <= 50; a++)
 {
 if (b != 203650110)
 {
-printf("%lu\n", b);
+printf("%li\n", b);
 }
 else
 {
-printf("%lu", b);
+printf("%li", b);
 }
-sum = (a + b);
+sum = a + b;
 b = c;
 c = sum;
 }
