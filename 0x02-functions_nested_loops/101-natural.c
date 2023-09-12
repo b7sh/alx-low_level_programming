@@ -9,7 +9,7 @@
 int main(void)
 {
 	long int my3, my5, sum;
-	int i;
+	int x;
 
 my3 = 0;
 my5 = 0;
