@@ -8,19 +8,19 @@
 
 int main(void)
 {
-int a;
-int b = 1;
-int c = 2;
-int sum;
+long int a;
+long int b = 1;
+long int c = 2;
+long int sum;
 for (a = 1; a <= 50; a++)
 {
 if (b != 203650110)
 {
-printf("%d\n", b);
+printf("%ld\n", b);
 }
 else
 {
-printf("%d", b);
+printf("%ld", b);
 }
 sum = (a + b);
 b = c;
