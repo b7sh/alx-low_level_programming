@@ -24,7 +24,7 @@ else
 printf("%li\n", b);
 }
 sum = b + c;
-c = b;
+b = c;
 c = sum;
 }
 return (0);
