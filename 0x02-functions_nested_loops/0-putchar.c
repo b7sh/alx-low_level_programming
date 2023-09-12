@@ -3,12 +3,14 @@
 /**
  * main - Entry point
  *
- * discripiton: print _putchar
+ * discripiton: using char c to print _putchar
+ *
+ *@c: using to print _putchar
  *
  * Return: Always 0 (success)
 */
 
-int _putchar(void);
+int _putchar(char c);
 {
 	char str[] = "_putchar"
 		int ch;
