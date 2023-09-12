@@ -16,11 +16,11 @@ for (a = 1; a <= 50; a++)
 {
 if (b != 203650110)
 {
-printf("%d", b);
+printf("%d\n", b);
 }
 else
 {
-printf("%d\n", b);
+printf("%d", b);
 }
 sum = (a + b);
 b = c;
