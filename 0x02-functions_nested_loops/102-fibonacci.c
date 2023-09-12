@@ -12,7 +12,7 @@ int a;
 int b = 1;
 int c = 2;
 int sum;
-for(a = 1; a <= 50; a++)
+for (a = 1; a <= 50; a++)
 {
 if (b != 203650110)
 {
