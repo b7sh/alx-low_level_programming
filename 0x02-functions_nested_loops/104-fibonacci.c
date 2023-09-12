@@ -15,7 +15,7 @@ long int e;
 long int f;
 long int g;
 
-a = 1;
+b = 1;
 c = 2;
 
 printf("%ld", b);
