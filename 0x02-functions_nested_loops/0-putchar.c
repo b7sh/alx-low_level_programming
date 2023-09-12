@@ -12,11 +12,11 @@
 
 int _putchar(char c);
 {
-	char str[] = "_putchar"
+	char c[] = "_putchar"
 		int ch;
 
 	for (ch = 0; ch < 8; ch++)
-		_puchar(str[ch]);
+		_puchar(c[ch]);
 	_putchar('\n');
 	return (0);
 }
