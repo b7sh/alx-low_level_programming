@@ -16,8 +16,8 @@ for (a = 1; a <= 50; a++)
 if (b != 20365011074)
 {
 printf("%li", b);
-printf(',');
-printf(' ');
+putchar(',');
+putchar(' ');
 }
 else
 {
