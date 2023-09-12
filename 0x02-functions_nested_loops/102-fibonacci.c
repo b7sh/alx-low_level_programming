@@ -23,7 +23,7 @@ else
 {
 printf("%li\n", b);
 }
-sum = a + b;
+sum = b + c;
 c = b;
 c = sum;
 }
