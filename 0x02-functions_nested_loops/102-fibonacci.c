@@ -15,7 +15,7 @@ for (a = 1; a <= 50; a++)
 {
 if (b != 20365011074)
 {
-printf("%li\n", b);
+printf("%li", b);
 }
 else
 {
