@@ -5,8 +5,8 @@
  *
  *@c: character to check
  *
- * Return: 1 is it's digit or 0 if it's not */
-
+ * Return: 1 is it's digit or 0 if it's not
+ */
 int _isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
