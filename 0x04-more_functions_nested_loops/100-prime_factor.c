@@ -33,7 +33,7 @@ a = a / b;
 if (a > 2)
 {
 mx = a;
-printf("%ld", mx);
+printf("%ld\n", mx);
 }
 return (0);
 }
