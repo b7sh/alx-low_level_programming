@@ -23,7 +23,7 @@ j++;
 }
 i++;
 j = 0;
-_putchar(92);
+_putchar('\\');
 _putchar('\n');
 }
 }
