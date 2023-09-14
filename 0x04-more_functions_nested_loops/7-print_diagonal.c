@@ -10,18 +10,23 @@
 void print_diagonal(int n)
 {
 
-int i, j;
+int i = 0, j = 0;
 
 if (n <= 0)
+{
+while (i < n)
+{
+while (i > j)
+{
 _putchar('\n');
+j++;
+}
+i++;
+j = 0;
+_putchar(92);
+_putchar('\n');
+}
+}
 else
-{
-for (i = 1; i <= n; i++)
-{
-for (j = 1; j <= i; j++)
-_putchar(' ');
-_putchar(92); /* is equal to '/' char */
 _putchar('\n');
-}
-}
 }
