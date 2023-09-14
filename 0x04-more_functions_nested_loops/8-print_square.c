@@ -10,12 +10,22 @@
 
 void print_square(int size)
 {
-int raw, column;
-for (raw = 1; raw <= size; raw++)
+
+if (size <= 0)
 {
-for (column = 1; column <= size; column++)
-_putchar(35);
+_putchar('\n');
+}
+else
+{
+int bro, sis;
+
+for (bro = 0; bro < size; bro++)
+{
+for (sis = 0; sis < size; sis++)
+{
+_putchar('#');
+}
 _putchar('\n');
 }
 }
-
+}
