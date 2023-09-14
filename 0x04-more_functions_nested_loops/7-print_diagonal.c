@@ -20,12 +20,8 @@ int i, j;
 for (i = 1; i <= n; i++)
 {
 for (j = 1; j <= i; j++)
-{
-if j == i;
-_putchar(92); /* is equal to '/' char */
-else if (j < i)
+_putchar(92); /* is equal to '/' char *
 _putchar(' ');
-}
 _putchar('\n');
 }
 }
