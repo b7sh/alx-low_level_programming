@@ -13,7 +13,7 @@ char temp;
 for (a = 0; s[a] != NULL; a++)
 	;
 
-for (j = 0; b < a / 2; b++)
+for (b = 0; b < a / 2; b++)
 {
 	temp = s[b];
 	s[b] = s[a - 1 - b];
