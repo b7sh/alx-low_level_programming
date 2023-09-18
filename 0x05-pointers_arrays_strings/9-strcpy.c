@@ -15,6 +15,6 @@ int cp = -1;
 do {
 	cp++;
 	dest[cp] = src[cp];
-} while (src[cp] != NULL);
+} while (src[cp] != '\0');
 return (dest);
 }
