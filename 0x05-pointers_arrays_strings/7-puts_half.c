@@ -13,6 +13,7 @@ int c;
 for (c = 0; str[c] != '\0'; c++)
 	;
 
+i++;
 for (c /= 2; str[c] != '\0'; c++)
 {
 	_putchar(str[c]);
