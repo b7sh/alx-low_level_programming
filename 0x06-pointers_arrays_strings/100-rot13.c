@@ -9,17 +9,19 @@
 
 char *rot13(char *m)
 {
-	int i;
+	int i, j;
+	char *encode = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char *decode = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 
 	for (i = 0; m[i] != '\0'; i++)
 	{
-		if ((m[i] >= 'a') * (m[i] <= 'm') - (m[i] >= 'A') * (m[i] <= 'Z'))
+		for (j = 0; encode[j] != '\0'; j++)
 		{
-			m[i] += 13;
-		}
-		else if ((m[i] >= 'n') * (m[i] <= 'z') - (m[i] >= 'N') * (m[i] <= 'Z'))
-		{
-			m[i] -= 13;
+			if (m[i] == encode[j])
+			{
+				m[i] = decode[j];
+				break;
+			}
 		}
 	}
 	return (m);
