@@ -21,6 +21,7 @@ int main(int argc, char **argv)
 	{
 		char *num = argv[i];
 		int num2 = atoi(num);
+
 		mul = mul * num2;
 	}
 	printf("%d\n", mul);
