@@ -18,12 +18,16 @@ int main(int argc, char **argv)
 		printf("0\n");
 		return (0);
 	}
-
+	
 	for (i = 1; i < argc; i++)
 	{
 		char *num = argv[i];
 		int num2 = atoi(num);
-
+		if ((*num < '0') || (*num > '9'))
+		{
+			printf("Error\n");
+			return (1);
+		}
 		if (num2 <= 0)
 		{
 			printf("Error\n");
