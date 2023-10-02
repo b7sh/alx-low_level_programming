@@ -2,6 +2,23 @@
 #include <stdlib.h>
 
 /**
+ * is_all_digit - function to help
+ * @str: pointer to hold the value
+ * Return: o or 1
+ */
+
+int is_all_digit(const char *str)
+{
+	while (*str)
+	{
+		if (*str < '0' || *str > '9')
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
+/**
  * main - print the sum of numbers
  * @argc: hold value greater than zero
  * @argv: hold the string
@@ -18,12 +35,13 @@ int main(int argc, char **argv)
 		printf("0\n");
 		return (0);
 	}
-	
+
 	for (i = 1; i < argc; i++)
 	{
 		char *num = argv[i];
 		int num2 = atoi(num);
-		if ((*num < '0') || (*num > '9'))
+
+		if (!is_all_digit(num))
 		{
 			printf("Error\n");
 			return (1);
