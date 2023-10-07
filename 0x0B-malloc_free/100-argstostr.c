@@ -2,7 +2,7 @@
 #include "main.h"
 
 /**
- * strlen - function to find the lenghth of a string
+ * strln - function to find the lenghth of a string
  * @p: the charactar
  * Return: k
  */
