@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "main.h"
-#include <stddef.h>
+
 /**
  * malloc_checked - allocated memory using malloc
  * @b: the integer to enter the size of memory
@@ -9,11 +9,11 @@
 
 void *malloc_checked(unsigned int b)
 {
-	void *a;
+	void *s;
 
-	a = malloc(b);
+	s = malloc(b);
 
-	if (a == NULL)
-		exit(98);
+	if (s == NULL)
+		_Exit(98);
 	return (a);
 }
