@@ -1,7 +1,8 @@
+#ifndef DOG_H
 #define DOG_H
 
 /**
- * dog - the header file
+ * struct dog - the header file
  * @name: the first pointer
  * @age: the float variable
  * @owner: the second pointer
