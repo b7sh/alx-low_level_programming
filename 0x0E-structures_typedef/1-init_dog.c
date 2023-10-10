@@ -3,8 +3,8 @@
 
 /**
  * init_dog - initialized the struct type
- * @dog *d: the struct variable
- * @*name: the first string
+ * @d: the struct variable
+ * @name: the first string
  * @age: the float variable
  * @owner: the second string
  */
