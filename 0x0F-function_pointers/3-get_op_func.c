@@ -25,5 +25,6 @@ int (*get_op_func(char *s))(int, int)
 			return (ops[i].f);
 		i++;
 	}
-	return (NULL);
+	if (strcmp((ops[i].op), s) == 1)
+		return (NULL);
 }
