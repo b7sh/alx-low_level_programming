@@ -11,7 +11,7 @@
 int main(int argc, char *argv[])
 {
 	unsigned char *p = (unsigned char *) main;
-	int num_of_bytes;
+	int num_bytes;
 	int i;
 
 	if (argc != 2)
@@ -19,16 +19,16 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(1);
 	}
-	num_of_bytes = atoi(argv[1]);
-	if (num_of_bytes < 0)
+	num_bytes = atoi(argv[1]);
+	if (num_bytes < 0)
 	{
 		printf("Error\n");
 		exit(2);
 	}
-	for (i = 0; i < num_of_bytes; i++)
+	for (i = 0; i < num_bytes; i++)
 	{
-		printf("%02x", p[i] && 0xFF);
-		if (i != num_of_bytes - 1)
+		printf("%02x", p[i] & 0xFF);
+		if (i != num_bytes - 1)
 			printf(" ");
 	}
 	printf("\n");
