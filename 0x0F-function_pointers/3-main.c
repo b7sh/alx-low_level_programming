@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 {
 	int n1, n2, r;
 	int (*op)(int, int);
+	char s;
 
 	if (argc != 4)
 	{
@@ -24,12 +25,13 @@ int main(int argc, char *argv[])
 
 	op = get_op_func(argv[2]);
 
-	if (op == NULL)
+	if (!op)
 	{
 		printf("Error\n");
 		exit(99);
 	}
-	if ((*argv[2] == '/' || *argv[2] == '%') && n2 == 0)
+	s = *argv[2];
+	if ((s == '/' || s == '%') && n2 == 0)
 	{
 		printf("Error\n");
 		exit(100);
