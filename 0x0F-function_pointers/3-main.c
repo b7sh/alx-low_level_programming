@@ -11,7 +11,7 @@
 
 int main(int argc, char *argv[])
 {
-	int n1, n2, r;
+	int num1, num2, r;
 	int (*op)(int, int);
 	char s;
 
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(100);
 	}
-	r = op(n1, n2);
+	r = op(num1, num2);
 	printf("%d\n", r);
 	return (0);
 }
