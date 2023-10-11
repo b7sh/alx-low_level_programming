@@ -10,7 +10,7 @@
 
 int main(int argc, char *argv[])
 {
-	char *p = (char*) main;
+	unsigned char *p = (unsigned char *) main;
 	int num_of_bytes;
 	int i;
 
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 	}
 	for (i = 0; i < num_of_bytes; i++)
 	{
-		printf("%02x", p[i]);
+		printf("%02x", p[i] && 0xFF);
 		if (i != num_of_bytes - 1)
 			printf(" ");
 	}
