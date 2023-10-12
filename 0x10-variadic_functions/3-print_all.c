@@ -2,12 +2,10 @@
 #include <stdarg.h>
 
 /**
- * print_all: print everything using variadic
- * where format is a list of type argument passed the function
- *
- * @format: the only argument
- *
-*/
+ * print_all - print everythings
+ * @format: is a list of type argument
+ */
+
 void print_all(const char *const format, ...)
 {
 	va_list ar;
@@ -30,7 +28,7 @@ void print_all(const char *const format, ...)
 					printf("%s%f", sr, f);
 					break;
 				case 'c':
-					c = (char)va_arg(ar, int);
+					c = va_arg(ar, int);
 					printf("%s%c", sr, c);
 					break;
 				case 's':
