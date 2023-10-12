@@ -11,14 +11,14 @@
 void print_all(const char *const format, ...)
 {
 	va_list ar;
-	const char *compare;
 	int i;
 	char c;
 	float f;
 	char *s;
+	const char *compare;
 
-	va_start(ar, format);
 	compare = format;
+	va_start(ar, format);
 
 	while (*compare)
 	{
@@ -45,10 +45,8 @@ void print_all(const char *const format, ...)
 			else
 				printf("%s", s);
 		}
-		if (*(compare + 1) && (*compare == 'i' || *compare == 'f' || *compare == 's' || *compare == 'c'))
-		{
+		if (*compare + 1 && (*compare == 'i' || *compare == 'f' || *compare == 'c'))
 			printf(", ");
-		}
 		compare++;
 	}
 	printf("\n");
