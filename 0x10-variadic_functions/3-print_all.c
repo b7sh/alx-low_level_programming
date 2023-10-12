@@ -11,11 +11,11 @@
 void print_all(const char *const format, ...)
 {
 	va_list ar;
-	int i;
+	int i = "";
 	const char *compare;
-	float f;
-	char c;
-	char *s;
+	float f = "";
+	char c = "";
+	char *s = "";
 
 	va_start(ar, format);
 	compare = format;
