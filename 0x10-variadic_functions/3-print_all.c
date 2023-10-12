@@ -11,7 +11,7 @@
 void print_all(const char *const format, ...)
 {
 	va_list ar;
-	int d;
+	int num;
 	char c;
 	float f;
 	char *s;
@@ -23,10 +23,10 @@ void print_all(const char *const format, ...)
 	{
 		if (i > 0)
 			printf(", ");
-		if (format[i] == 'd')
+		if (format[i] == 'i')
 		{
-			d = va_arg(ar, int);
-			printf("%d", d);
+			num = va_arg(ar, int);
+			printf("%d", num);
 		}
 		else if (format[i] == 'f')
 		{
