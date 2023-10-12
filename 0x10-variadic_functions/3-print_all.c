@@ -23,28 +23,28 @@ void print_all(const char *const format, ...)
 	{
 		if (i > 0)
 			printf(", ");
-		if (format[i] == 'i')
+		switch (format[i])
 		{
+			case 'i':
 			num = va_arg(ar, int);
 			printf("%d", num);
-		}
-		else if (format[i] == 'f')
-		{
+			break;
+			case 'f':
 			f = va_arg(ar, double);
 			printf("%f", f);
-		}
-		else if (format[i] == 'c')
-		{
+			break;
+			case 'c':
 			c = va_arg(ar, int);
 			printf("%c", c);
-		}
-		else if (format[i] == 's')
-		{
+			break;
+			case 's':
 			s = va_arg(ar, char *);
 			if (s == NULL)
 				printf("(nil)");
 			else
 				printf("%s", s);
+			default:
+			break;
 		}
 		i++;
 	}
