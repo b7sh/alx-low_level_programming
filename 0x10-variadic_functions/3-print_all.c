@@ -11,33 +11,34 @@
 void print_all(const char *const format, ...)
 {
 	va_list ar;
-	int i;
+	int d;
 	char c;
 	float f;
 	char *s;
-	const char *compare;
+	int i = 0;
 
-	compare = format;
 	va_start(ar, format);
 
-	while (*compare)
+	while (format && format[i])
 	{
-		if (*compare == 'i')
+		if (i > 0)
+			printf(", ");
+		if (format[i] == 'd')
 		{
-			i = va_arg(ar, int);
-			printf("%d", i);
+			d = va_arg(ar, int);
+			printf("%d", d);
 		}
-		else if (*compare == 'f')
+		else if (format[i] == 'f')
 		{
-			f = (float)va_arg(ar, int);
+			f = va_arg(ar, double);
 			printf("%f", f);
 		}
-		else if (*compare == 'c')
+		else if (format[i] == 'c')
 		{
-			c = (char)va_arg(ar, int);
+			c = va_arg(ar, int);
 			printf("%c", c);
 		}
-		else if (*compare == 's')
+		else if (format[i] == 's')
 		{
 			s = va_arg(ar, char *);
 			if (s == NULL)
@@ -45,9 +46,7 @@ void print_all(const char *const format, ...)
 			else
 				printf("%s", s);
 		}
-		if ((*compare != *compare + 1) && *compare != 's')
-			printf(", ");
-		compare++;
+		i++;
 	}
 	printf("\n");
 	va_end(ar);
