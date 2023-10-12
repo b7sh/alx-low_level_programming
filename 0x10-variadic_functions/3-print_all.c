@@ -45,7 +45,7 @@ void print_all(const char *const format, ...)
 			else
 				printf("%s", s);
 		}
-		if (*compare + 1 && (*compare == 'i' || *compare == 'f' || *compare == 'c'))
+		if ((*compare != *compare + 1) && *compare != 's')
 			printf(", ");
 		compare++;
 	}
