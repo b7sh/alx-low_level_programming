@@ -11,11 +11,11 @@
 void print_all(const char *const format, ...)
 {
 	va_list ar;
-	int i = "";
 	const char *compare;
-	float f = "";
-	char c = "";
-	char *s = "";
+	int i;
+	char c;
+	float f;
+	char *s;
 
 	va_start(ar, format);
 	compare = format;
@@ -44,6 +44,10 @@ void print_all(const char *const format, ...)
 				printf("(nil)");
 			else
 				printf("%s", s);
+		}
+		if (*(compare + 1) && (*compare == 'i' || *compare == 'f' || *compare == 's' || *compare == 'c'))
+		{
+			printf(", ");
 		}
 		compare++;
 	}
