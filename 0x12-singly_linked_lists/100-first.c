@@ -1,6 +1,6 @@
 #include "lists.h"
 
-void print() __attribute__ ((constructor));
+void print(void) __attribute__ ((constructor));
 
 /**
  * print - print message
