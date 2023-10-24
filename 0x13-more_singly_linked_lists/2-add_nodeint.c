@@ -1,9 +1,9 @@
 #include "lists.h"
 
 /**
- * add _nodeint - add new node to the begin
+ * add_nodeint - add new node to the begin
  * of the node
- * @h: the head of the list
+ * @head: the head of the list
  * @n: the const int to numbers
  * Return: str or NULL
  */
