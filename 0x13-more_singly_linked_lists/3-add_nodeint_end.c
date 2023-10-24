@@ -4,7 +4,7 @@
  * add_nodeint_end - add new node to the end of the list
  * @head: the head of the list
  * @n: the const integer for the numbers
- * Reuen: ptr or NULL
+ * Return: ptr or NULL
  */
 
 listint_t *add_nodeint_end(listint_t **head, const int n)
@@ -20,7 +20,7 @@ listint_t *add_nodeint_end(listint_t **head, const int n)
 	while (*head == NULL)
 	{
 		*head = ptr;
-		return (NULL);
+		return (ptr);
 	}
 	while (temp->next != NULL)
 	{
