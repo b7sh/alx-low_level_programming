@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * binary_to_unit - convert from binary to decimal
+ * binary_to_uint - convert from binary to decimal
  * @b: our char to hold binary numbers
  * Return: sum or 0 if it NULL and if it not 0 or 1
  */
