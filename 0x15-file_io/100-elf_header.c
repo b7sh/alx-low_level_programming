@@ -42,12 +42,15 @@ void display_elf_header(const char *filename)
 		print_error_and_exit("Error: Not an ELF file");
 	if (header.e_ident[EI_MAG3] != ELFMAG3)
 		print_error_and_exit("Error: Not an ELF file");
-	printf("Magic: %c\n", header.e_ident[EI_MAG1]);
-	printf("Magic: %c\n", header.e_ident[EI_MAG2]);
-	printf("Magic: %c\n", header.e_ident[EI_MAG3]);
-	printf("Magic: %c\n", header.e_ident[EI_MAG0]);
+	printf("Magic: %c %c %c %c\n",
+			header.e_ident[EI_MAG1],
+			header.e_ident[EI_MAG2],
+			header.e_ident[EI_MAG3],
+			header.e_ident[EI_MAG0]);
 	printf("Class: %d-bit\n", (header.e_ident[EI_CLASS] == ELFCLASS32) ? 32 : 64);
-	printf("Data: %d\n", header.e_ident[EI_DATA]);
+	printf("Data: %s\n", (header.e_ident[EI_DATA] == ELFDATA2LSB)
+		? "2's complement, little-endian"
+		: "2's complement, big-endian");
 	printf("Version: %d\n", header.e_ident[EI_VERSION]);
 	printf("OS/ABI: %d\n", header.e_ident[EI_OSABI]);
 	printf("ABI Version: %d\n", header.e_ident[EI_ABIVERSION]);
