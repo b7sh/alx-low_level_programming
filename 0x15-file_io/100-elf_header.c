@@ -75,9 +75,10 @@ void display_elf_header(const char *filename)
 		? "2's complement, little-endian"
 		: "2's complement, big-endian");
 	printf("Version:                           %d\n", header.e_ident[EI_VERSION]);
-	printf("OS/ABI:                            %d\n", header.e_ident[EI_OSABI]);
-	printf("ABI Version:                       %s\n",
-		get_str(header.e_ident[EI_ABIVERSION]));
+	printf("OS/ABI:                            %s\n",
+		get_str(header.e_ident[EI_OSABI]));
+	printf("ABI Version:                       %d\n",
+		header.e_ident[EI_ABIVERSION]);
 	printf("Type:                              %s\n", get_str(header.e_type));
 	printf("Entry point address:               0x%x\n", header.e_entry);
 	close(fd);
