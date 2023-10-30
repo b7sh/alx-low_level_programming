@@ -8,7 +8,7 @@
 
 char *create_buffer(void)
 {
-	char *buffer = malloc(1024);
+	char *buffer = malloc((char) * 1024);
 
 	if (buffer == NULL)
 	{
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 		exit(98); }
 	file_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (file_to == -1)
-	{	dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
+	{	dprintf(STDERR_FILENO, "Error: Can't write to  %s\n", argv[2]);
 		free(fp);
 		close_the_file(file_from);
 		exit(99); }
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 		wr = write(file_to, fp, rd);
 		if (wr == -1)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			free(fp);
 			close_the_file(file_from);
 			close_the_file(file_to);
