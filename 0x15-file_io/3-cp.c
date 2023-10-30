@@ -1,5 +1,8 @@
 #include "main.h"
 
+char *create_buffer(void);
+void close_the_file(int fd);
+
 /**
  * create_buffer - allocate 1024 bytes
  *
@@ -12,7 +15,7 @@ char *create_buffer(void)
 
 	if (buffer == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: can't allocte memory\n");
+		dprintf(STDERR_FILENO, "Error: Can't allocte memory\n");
 		exit(99);
 	}
 	return (buffer);
