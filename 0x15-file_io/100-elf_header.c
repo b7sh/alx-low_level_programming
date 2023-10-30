@@ -10,13 +10,13 @@ const char *get_str(uint8_t abi_type)
 	switch (abi_type)
 	{
 		case 0:
-			return "System V";
+			return ("System V");
 		case 1:
-			return "HP-UX";
+			return ("HP-UX");
 		case 255:
-			return "Processor-specific";
+			return ("Processor-specific");
 		default:
-		return "Unknown";
+		return ("Unknown");
 	}
 }
 
@@ -62,20 +62,24 @@ void display_elf_header(const char *filename)
 		print_error_and_exit("Error: Not an ELF file");
 	}
 	printf("ELF Header:\n");
-	printf("Magic:	%c %c %c %c\n",
+	printf("Magic:   %c %c %c %c\n",
 			header.e_ident[EI_MAG1],
 			header.e_ident[EI_MAG2],
 			header.e_ident[EI_MAG3],
 			header.e_ident[EI_MAG0]);
-	printf("Class:			%s\n", (header.e_ident[EI_CLASS] == ELFCLASS32) ? "ELF32" : "ELF64");
-	printf("Data:			%s\n", (header.e_ident[EI_DATA] == ELFDATA2LSB)
+	printf("Class:                             %s\n",
+		(header.e_ident[EI_CLASS] == ELFCLASS32)
+		? "ELF32" : "ELF64");
+	printf("Data:                              %s\n",
+		(header.e_ident[EI_DATA] == ELFDATA2LSB)
 		? "2's complement, little-endian"
 		: "2's complement, big-endian");
-	printf("Version:		%d\n", header.e_ident[EI_VERSION]);
-	printf("OS/ABI:			%d\n", header.e_ident[EI_OSABI]);
-	printf("ABI Version:		%s\n", get_str(header.e_ident[EI_ABIVERSION]));
-	printf("Type:			%s\n", get_str(header.e_type));
-	printf("Entry point address:		0x%x\n", header.e_entry);
+	printf("Version:                           %d\n", header.e_ident[EI_VERSION]);
+	printf("OS/ABI:                            %d\n", header.e_ident[EI_OSABI]);
+	printf("ABI Version:                       %s\n",
+		get_str(header.e_ident[EI_ABIVERSION]));
+	printf("Type:                              %s\n", get_str(header.e_type));
+	printf("Entry point address:               0x%x\n", header.e_entry);
 	close(fd);
 }
 /**
