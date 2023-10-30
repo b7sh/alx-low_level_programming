@@ -50,15 +50,15 @@ void display_elf_header(const char *filename)
 	int fd = open(filename, O_RDONLY);
 
 	if (fd == -1)
-		print_error_and_exit("Error: can't open file\n");
+		print_error_and_exit("Error: can't open file");
 
 	if (read(fd, &header, sizeof(Elf32_Ehdr)) != sizeof(Elf32_Ehdr))
-		print_error_and_exit("Error: can't read ELF header\n");
+		print_error_and_exit("Error: can't read ELF header");
 
-	if (header.e_ident[EI_MAG0] != ELFMAG0 ||
-			header.e_ident[EI_MAG1] != ELFMAG1 ||
-			header.e_ident[EI_MAG2] != ELFMAG2 ||
-			header.e_ident[EI_MAG3] != ELFMAG3)
+	if (!(header.e_ident[EI_MAG0] == ELFMAG0 &&
+			header.e_ident[EI_MAG1] == ELFMAG1 &&
+			header.e_ident[EI_MAG2] == ELFMAG2 &&
+			header.e_ident[EI_MAG3] == ELFMAG3))
 	{
 		print_error_and_exit("Error: Not an ELF file");
 	}
