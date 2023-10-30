@@ -1,28 +1,15 @@
 #include "main.h"
 
-/**
- * get_str - get the string for the abi version and type
- * @abi_version: hold the abi version value
- * Return: string
-*/
-
-const char *get_str(uint8_t abi_version)
-{
-	switch (abi_version)
-	{
-		case 0:
-			return ("System V");
-		case 1:
-			return ("HP-UX");
-		case 255:
-			return ("Processor-specific");
-		default:
-		return ("Unknown");
-	}
-}
-
-void display_elf_header(const char *filename);
-void print_error_and_exit(const char *message);
+void check_elf(unsigned char *e_ident);
+void print_magic(unsigned char *e_ident);
+void print_class(unsigned char *e_ident);
+void print_data(unsigned char *e_ident);
+void print_version(unsigned char *e_ident);
+void print_osabi(unsigned char *e_ident);
+void print_abi(unsigned char *e_ident);
+void print_type(unsigned int e_type, unsigned char *e_ident);
+void print_entry(unsigned long int e_entry, unsigned char *e_ident);
+void close_elf(int elf);
 
 /**
  * main - entry point
@@ -32,60 +19,290 @@ void print_error_and_exit(const char *message);
 */
 int main(int argc, char *argv[])
 {
+	Elf64_Ehdr *header;
+	int elf;
+	ssize_t r;
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "Usage: %s elf_filename\n", argv[0]);
 		exit(98);
 	}
-	display_elf_header(argv[1]);
+	elf = open(argv[1], O_RDONLY);
+
+	if (elf == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: can't read file %s\n", argv[1]);
+		exit(98);
+	}
+	header = malloc(sizeof(Elf64_Ehdr));
+	if (header == NULL)
+	{
+		close_elf(elf);
+		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
+		exit(98);
+	}
+	r = read(elf, header, sizeof(Elf64_Ehdr));
+	if (r == -1)
+	{
+		free(header);
+		close_elf(elf);
+		dprintf(STDERR_FILENO, "Error: '%s': No such file\n", argv[1]);
+		exit(98);
+	}
+
+	check_elf(header->e_ident);
+	printf("ELF Header:\n");
+	print_magic(header->e_ident);
+	print_class(header->e_ident);
+	print_data(header->e_ident);
+	print_version(header->e_ident);
+	print_osabi(header->e_ident);
+	print_abi(header->e_ident);
+	print_type(header->e_type, header->e_ident);
+	print_entry(header->e_entry, header->e_ident);
+
+	free(header);
+	close_elf(elf);
 	return (0);
 }
+
 /**
- * display_elf_header - print the elf header content
- * @filename: hold the file
-*/
-void display_elf_header(const char *filename)
+ * check_elf - check the elf
+ * @e_ident: hold the value
+ */
+
+void check_elf(unsigned char *e_ident)
 {
-	Elf32_Ehdr header;
-	int fd = open(filename, O_RDONLY);
+	int index;
 
-	if (fd == -1)
-		print_error_and_exit("Error: can't open file");
-
-	if (read(fd, &header, sizeof(Elf32_Ehdr)) != sizeof(Elf32_Ehdr))
-		print_error_and_exit("Error: can't read ELF header");
-
-	if (!(header.e_ident[EI_MAG0] == ELFMAG0 &&
-			header.e_ident[EI_MAG1] == ELFMAG1 &&
-			header.e_ident[EI_MAG2] == ELFMAG2 &&
-			header.e_ident[EI_MAG3] == ELFMAG3))
+	for (index = 0; index < 4; index++)
 	{
-		print_error_and_exit("Error: Not an ELF file");
+		if (e_ident[index] != 127 &&
+			e_ident[index] != 'E' &&
+			e_ident[index] != 'L' &&
+			e_ident[index] != 'F')
+		{
+			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
+			exit(98);
+		}
 	}
-	printf("ELF Header:\n");
-	printf("  Magic:   %c %c %c %c\n",
-			header.e_ident[EI_MAG1],
-			header.e_ident[EI_MAG2],
-			header.e_ident[EI_MAG3],
-			header.e_ident[EI_MAG0]);
-	printf("  Class:	%d\n", (header.e_ident[EI_CLASS] == ELFCLASS32)
-		? 32 : 64);
-	printf("  Data:	%s\n", (header.e_ident[EI_DATA] == ELFDATA2LSB)
-		? "2's complement, little endian"
-		: "2's complement, big endian");
-	printf("  Version: %d\n", header.e_ident[EI_VERSION]);
-	printf("  OS/ABI:	%d\n", header.e_ident[EI_OSABI]);
-	printf("  ABI Version: %s\n", get_str(header.e_ident[EI_ABIVERSION]));
-	printf("  Type:	%d\n", (header.e_type));
-	printf("  Entry point address: 0x%x\n", header.e_entry);
-	close(fd);
 }
+
 /**
- * print_error_and_exit - printing the error message and exit
- * @message: hold the error message
-*/
-void print_error_and_exit(const char *message)
+ * print_magic - print the magic content
+ * @e_ident: hold the value
+ */
+
+void print_magic(unsigned char *e_ident)
 {
-	fprintf(stderr, "%s\n", message);
-	exit(98);
+	int index;
+
+	printf("  Magic:   ");
+	for (index = 0; index < EI_NIDENT; index++)
+	{
+		printf("%02x", e_ident[index]);
+		if (index == EI_NIDENT - 1)
+			printf("\n");
+		else
+			printf(" ");
+	}
+}
+
+/**
+ * print_class - orint the class content
+ * @e_ident: hold the value
+*/
+
+void print_class(unsigned char *e_ident)
+{
+	printf("  Class:                       ");
+
+	switch (e_ident[EI_CLASS])
+	{
+		case ELFCLASSNONE:
+			printf("none\n");
+			break;
+		case ELFCLASS32:
+			printf("ELF32\n");
+			break;
+		case ELFCLASS64:
+			printf("ELF64\n");
+			break;
+		default:
+			printf("<unknown: %x>\n", e_ident[EI_CLASS]);
+
+	}
+}
+
+/**
+ * print_data - print the data content
+ * @e_ident: hold the value
+*/
+
+void print_data(unsigned char *e_ident)
+{
+	printf("  Data:                       ");
+
+	switch (e_ident[EI_DATA])
+	{
+		case ELFDATANONE:
+			printf("none\n");
+			break;
+		case ELFDATA2LSB:
+			printf("2's complement, little endian\n");
+			break;
+		case ELFDATA2MSB:
+			printf("2's complement, big endian\n");
+			break;
+		default:
+			printf("<unknown: %x>\n", e_ident[EI_CLASS]);
+	}
+}
+
+/**
+ * print_version - print the version content
+ * @e_ident: hold the value
+*/
+
+void print_version(unsigned char *e_ident)
+{
+	printf("  Version:                    %d", e_ident[EI_VERSION]);
+
+	switch (e_ident[EI_VERSION])
+	{
+		case EV_CURRENT:
+			printf(" (current)\n");
+			break;
+		default:
+			printf("\n");
+			break;
+	}
+}
+
+/**
+ * print_osabi - print the osabi content
+ * @e_ident: hold the value
+*/
+
+void print_osabi(unsigned char *e_ident)
+{
+	printf("  OS/ABI:                       ");
+
+	switch (e_ident[EI_OSABI])
+	{
+		case ELFOSABI_NONE:
+			printf("UNIX - System V\n");
+			break;
+		case ELFOSABI_HPUX:
+			printf("UNIX - HP-UX\n");
+			break;
+		case ELFOSABI_NETBSD:
+			printf("UNIX - NetBSD\n");
+			break;
+		case ELFOSABI_LINUX:
+			printf("UNIX - Linux\n");
+			break;
+		case ELFOSABI_SOLARIS:
+			printf("UNIX - Solaris\n");
+			break;
+		case ELFOSABI_IRIX:
+			printf("UNIX - IRIX\n");
+			break;
+		case ELFOSABI_FREEBSD:
+			printf("UNIX - FreeBSD\n");
+			break;
+		case ELFOSABI_TRU64:
+			printf("UNIX- TRU64\n");
+			break;
+		case ELFOSABI_ARM:
+			printf("ARM\n");
+			break;
+		case ELFOSABI_STANDALONE:
+			printf("Standalone App\n");
+			break;
+		default:
+			printf("<unknown: %x>\n", e_ident[EI_OSABI]);
+	}
+}
+
+/**
+ * print_abi - print the abi version
+ * @e_ident: hold the value
+*/
+
+void print_abi(unsigned char *e_ident)
+{
+	printf("  ABI Version:                  %d\n", e_ident[EI_ABIVERSION]);
+}
+
+/**
+ * print_type - print the type content
+ * @e_tepe: to the e_ident
+ * @e_ident: hold the value
+*/
+
+void print_type(unsigned int e_type, unsigned char *e_ident)
+{
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
+		e_type >>= 8;
+
+	printf("  Type:                       ");
+
+	switch (e_type)
+	{
+		case ET_NONE:
+			printf("NONE (None)\n");
+			break;
+		case ET_REL:
+			printf("REL (Relocatable file)\n");
+			break;
+		case ET_EXEC:
+			printf("EXEC (Executable file)\n");
+			break;
+		case ET_DYN:
+			printf("DYN (Shared object file)\n");
+			break;
+		case ET_CORE:
+			printf("CORE (Core file)\n");
+			break;
+		default:
+			printf("<unknown: %x>\n", e_type);
+	}
+}
+
+/**
+ * print_entry - print the entery content
+ * @e_entry: to the e_ident
+ * @e_ident: hold the value
+*/
+
+void print_entry(unsigned long int e_entry, unsigned char *e_ident)
+{
+	printf("  Entry point address:            ");
+
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
+	{
+		e_entry = ((e_entry << 8) & 0xFF00FF00) |
+			  ((e_entry >> 8) & 0xFF00FF);
+		e_entry = (e_entry << 16) | (e_entry >> 16);
+	}
+	if (e_ident[EI_CLASS] == ELFCLASS32)
+		printf("%#x\n", (unsigned int)e_entry);
+	else
+		printf("%#lx\n", e_entry);
+}
+
+/**
+ * close_elf - to close it with error message when it's wrong
+ * @elf: to hold it
+*/
+
+void close_elf(int elf)
+{
+	if (close(elf) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", elf);
+		exit(98);
+	}
 }
