@@ -34,14 +34,13 @@ void display_elf_header(const char *filename)
 	if (read(fd, &header, sizeof(Elf32_Ehdr)) != sizeof(Elf32_Ehdr))
 		print_error_and_exit("Error: can't read ELF header\n");
 
-	if (header.e_ident[EI_MAG0] != ELFMAG0)
+	if (header.e_ident[EI_MAG0] != ELFMAG0 ||
+		header.e_ident[EI_MAG1] != ELFMAG1 ||
+		header.e_ident[EI_MAG2] != ELFMAG2 ||
+		header.e_ident[EI_MAG3] != ELFMAG3)
+	{
 		print_error_and_exit("Error: Not an ELF file");
-	if (header.e_ident[EI_MAG1] != ELFMAG1)
-		print_error_and_exit("Error: Not an ELF file");
-	if (header.e_ident[EI_MAG2] != ELFMAG2)
-		print_error_and_exit("Error: Not an ELF file");
-	if (header.e_ident[EI_MAG3] != ELFMAG3)
-		print_error_and_exit("Error: Not an ELF file");
+	}
 	printf("Magic: %c %c %c %c\n",
 			header.e_ident[EI_MAG1],
 			header.e_ident[EI_MAG2],
