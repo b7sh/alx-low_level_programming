@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 	if (file_to == -1)
 	{	dprintf(STDERR_FILENO, "Error: can't write to %s\n", argv[2]);
 		free(fp);
-		close(file_from);
+		close_the_file(file_from);
 		exit(99); }
 	while ((rd = read(file_from, fp, 1024)) > 0)
 	{
@@ -67,18 +67,18 @@ int main(int argc, char *argv[])
 		{
 			dprintf(STDERR_FILENO, "Error: can't write to %s\n", argv[2]);
 			free(fp);
-			close(file_from);
-			close(file_to);
+			close_the_file(file_from);
+			close_the_file(file_to);
 			exit(99); }
 	}
 	if (rd == -1)
 	{	dprintf(STDERR_FILENO, "Error: can't read from file %s\n", argv[1]);
 		free(fp);
-		close(file_from);
-		close(file_to);
+		close_the_file(file_from);
+		close_the_file(file_to);
 		exit(98); }
 	free(fp);
-	close(file_from);
-	close(file_to);
+	close_the_file(file_from);
+	close_the_file(file_to);
 	return (0);
 }
