@@ -8,7 +8,7 @@
 
 const char *get_str(uint8_t abi_version)
 {
-	switch (abi_type)
+	switch (abi_version)
 	{
 		case 0:
 			return ("System V");
