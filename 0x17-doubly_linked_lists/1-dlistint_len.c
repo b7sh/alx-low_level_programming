@@ -1,12 +1,12 @@
 #include "lists.h"
 
 /**
- * print_dlistint - print the element in the dlistint_t
+ * dlistint_len - find the lengt of the list
  * @h: the head of the list
  * Return: result
 */
 
-size_t print_dlistint(const dlistint_t *h)
+size_t dlistint_len(const dlistint_t *h)
 {
 	int result = 0;
 
@@ -18,7 +18,6 @@ size_t print_dlistint(const dlistint_t *h)
 		h = h->prev;
 	while (h)
 	{
-		printf("%d\n", h->n);
 		h = h->next;
 		result++;
 	}
