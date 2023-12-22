@@ -30,7 +30,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		{
 			free(ht->array[index2]->value);
 			ht->array[index2]->value = copy;
-			free(copy);
 			return (1);
 		}
 	}
